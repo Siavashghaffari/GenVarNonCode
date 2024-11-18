@@ -32,6 +32,7 @@ To run the pipeline, you can execute either:
 Run the pipeline with Snakemake:
 ```bash
 snakemake -j 8
+```
 
 Adjust -j based on the number of available CPUs. Ensure to set paths correctly for your environment.
 
