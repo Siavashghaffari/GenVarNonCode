@@ -19,7 +19,7 @@ Clone the repository and install the required dependencies:
 git clone https://github.com/Siavashghaffari/GenVarNonCode
 cd GenVarNonCode
 pip install -r requirements.txt
-
+```
 
 ## Usage
 
