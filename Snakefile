@@ -3,37 +3,49 @@ import sys
 import pandas as pd  
 import numpy as np   
 
-rule all:
-    input:
-        "Wrapper_output.txt"  # Final expected output file, adjust based on actual results
+# Snakefile for running the CNV analysis pipeline
 
-rule main_sv:
-    output:
-        "main_sv_output.txt"  # Placeholder for actual output, modify as needed
-    shell:
-        """
-        cd PIPE
-        module load python/3.9.2_torch_gpu
-        python /home/sghaffari/PIPE/MAIN_SV.py > {output}
-        """
+# Define the number of cores and other resources
+cores = 8
+walltime = "47:59:00"
+memory = "64g"
+vmemory = "64g"
 
-rule r_sv:
+# Rule to run Python script for CNV analysis
+rule run_cnv_python:
     input:
-        "main_sv_output.txt"
+        "src/MAIN_CNV.py"
     output:
-        "r_sv_output.txt"  # Placeholder for actual output, modify as needed
+        temp("output_cnv.tsv")  # Temporary output
+    resources:
+        mem=memory, vmem=vmemory
     shell:
-        """
-        module load R/4.1.0
-        chmod +x ./R_SV.r
-        Rscript ./R_SV.r > {output}
-        """
+        "module load python/3.9.2_torch_gpu && "
+        "python {input} > {output}"
 
-rule wrapper:
+# Rule to run R script for CNV analysis
+rule run_r_script:
     input:
-        "r_sv_output.txt"
+        "src/R_test.r"
     output:
-        "Wrapper_output.txt"  # Placeholder for actual output, modify as needed
+        temp("output_r.tsv")  # Temporary output
+    resources:
+        mem=memory, vmem=vmemory
     shell:
-        """
-        python /home/sghaffa
+        "module load R/4.1.0 && "
+        "chmod +x {input} && "
+        "Rscript {input} > {output}"
+
+# Rule to run the Python wrapper for CNV
+rule run_wrapper:
+    input:
+        "src/Wrapper.py"
+    output:
+        "p-values_lncRNA_CNVs.tsv"  # Final output file
+    resources:
+        mem=memory, vmem=vmemory
+    params:
+        arg1="lncRNA", arg2="CNV"
+    shell:
+        "python {input} {params.arg1} {params.arg2} > {output}"
+

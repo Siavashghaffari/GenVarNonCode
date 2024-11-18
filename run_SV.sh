@@ -6,8 +6,8 @@
 
 module load python/3.9.2_torch_gpu
 #export PYTHONUSERBASE=$HOME/.usr/local/python/3.8.0
-python ./src/MAIN_CNV.py
+python ./src/MAIN_SV.py
 module load R/4.1.0
-chmod +x ./R_SV.r
-Rscript ./R_SV.r
+chmod +x ./src/R_SV.r
+Rscript ./src/R_SV.r
 python ./src/Wrapper.py "lncRNA" "SV"
