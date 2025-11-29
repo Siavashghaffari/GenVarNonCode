@@ -1,0 +1,16 @@
+# Configuration file for GenVarNonCode Snakemake workflow
+
+# Computational resources
+cores: 8
+memory: "64g"
+
+# Python and R executables
+# Adjust these paths if you're using specific versions or environments
+python: "python"  # or "python3" or path to specific python
+rscript: "Rscript"  # or path to specific Rscript
+
+# Output directory for results
+output_dir: "results"
+
+# Analysis parameters
+# Add any additional parameters your scripts might need here
