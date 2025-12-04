@@ -42,7 +42,7 @@ All Python dependencies are listed in `requirements.txt` and can be installed au
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Siavashghaffari/GenVarNonCode
+git clone https://github.com/Siavashghaffari/GenVarNonCode.git
 cd GenVarNonCode
 ```
 
@@ -359,9 +359,7 @@ GitHub repository: https://github.com/Siavashghaffari/GenVarNonCode
 
 This work was authored by **Siavash Ghaffari**. For any queries or further information, please feel free to contact Siavash directly. Feedback is always appreciated to help improve and refine the pipeline.
 
-## License
 
-This project is available for academic and research use. Please contact the author for commercial use inquiries.
 
 ## Version History
 
